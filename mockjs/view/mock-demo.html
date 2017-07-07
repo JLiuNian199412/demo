@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/lib/jquery-3.1.1.js"></script>
+    <script src="../js/lib/mock-min.js"></script>
+    <style>
+        html{
+            font-size:100px;
+        }
+        body{
+            font-size: 0.18rem;
+        }
+        #demo-muck{
+            width: 7.6rem;
+            /*height: 8rem;*/
+            margin: auto;
+            border: solid 1px grey;
+            padding: 0.2rem 1rem 0.4rem 1rem;
+        }
+        .demo-muck-title{
+            text-align: center;
+            width: 84%;
+        }
+        .sameCSS{
+            margin: auto;
+            margin-bottom: 0.2rem;
+            width: 84%;
+        }
+        .demo-muck-main{
+
+            /*border: solid 1px red;*/
+            position: relative;
+        }
+        .demo-muck-container{
+            /*border: solid 1px red;*/
+        }
+        .demo-muck-container li{
+            margin-bottom: 0.04rem;
+        }
+        .demo-muck-container span{
+            display: inline-block;
+            width: 0.85rem;
+            text-align:justify
+        }
+        .demo-muck-testName{
+            width: 0.8rem;
+            height:0.28rem;
+            border: solid 1px #cecece;
+            box-sizing: border-box;
+            padding:0.05rem 0.08rem 0.05rem 0.08rem;
+        }
+        .demo-muck-testName-after{
+            position: absolute;
+            vertical-align:middle;
+            font-size: 12px;
+            color: red;
+            line-height: 0.28rem;
+            /*border: solid 1px red;*/
+            /*z-index: 6;*/
+            left: 1.3rem;
+        }
+    </style>
+</head>
+<body>
+<div id="demo-muck" >
+    <div class="demo-muck-title sameCSS">测测你的时运？超准！！！</div>
+    <div class="demo-muck-main sameCSS">
+        <span style="display:inline-block;line-height: 0.22rem;vertical-align:middle;">姓名:</span><input class="demo-muck-testName" type="text" >
+        <span style="margin-left: 3rem">
+            <input type="button" value="开始测试！" class="btn-begin-test">
+        </span>
+    </div>
+    <div class="demo-muck-container sameCSS"></div>
+</div>
+</body>
+<script>
+    $(function(){
+        var urrl=Mock.mock('@url("http")');
+        console.log(urrl);
+        Mock.mock(urrl, {
+        some:{'name': '@name',
+            "happy|6-8": "★",
+            'color': '@color',
+            'text|0-4': 10
+        },
+            happyTime: [
+                {age:"1—3",detail:"一岁到三岁的时候，你天天被大人捧在手心里宠爱，想要什么就能得到什么，幸福和快乐的滋味都被你尝尽了。你的爸妈也因为你而感到幸福。你的幼儿时期比谁都要幸运，你拥有最好的爸爸妈妈，只是你是个淘气的小孩子，人说小孩都是爱到三岁恨到老，所以，三岁以后你的好运衰退了。"},
+                {age:"5—10",detail:"儿童时期的你是个可爱的孩子。之所以说那时候的你运气好是因为你遇到了全天下最棒的启蒙老师。老师教给你一生最重要的知识，他让你发现自己将来最喜欢做的事是什么，一个人最悲哀的就是找不到自己的兴趣爱好，没有兴趣爱好的人生就像一杯白开水。"},
+                {age:"16—25",detail:"青春时期的你运气真的有够好，尽管那时候的你有可能和其他孩子一样，幼稚，冲动，叛逆，易怒，但你却能找到自己的理想，你周围的朋友是你一生中最重要的人，他们陪你走过了你最单纯的岁月，陪你找寻到了自己的梦想，让你明白自己想要什么样的人生。"},
+                {age:"25—37",detail:"在青年时期，你为事业而奋斗，你为爱情而疯狂，你所得到的东西也是这一辈子得到的最宝贵的东西。当年迈之时，你回过头看自己的人生，你会发现，青年时期是那么地美好，自己原来是那么幸运的一个人，在能有健康的身体享受快乐的时候痛快地享受了人生的快乐。"},
+                {age:"30—40",detail:"中年时候，你的事业攀上了高峰，生活质量也达到了顶端。30岁是你正需要运气的时候，上天非常眷顾你，在你需要运气的时候给了你运气，给了你力量，你应该好好珍惜和把握，改变自己的未来也许句靠那个时候了，你要抓住机遇，勇往直前。"}, {age: "40—55", detail:"晚年的你得到了自己想要的东西，你会发现自己一生都是幸运的，尤其是晚年的时候拥有一个健康的身体，尽管年轻的时候有可能会吃一些苦头，但晚年的时候，你发现，年轻时候受的累算不得什么，因为原来上天早就安排好把你吃的苦补偿给你。"}
+        ]
+        });
+//        $.ajax({
+//            url:urrl,
+//            type:'get',
+//            timeout:5000,
+//            dataType:'json',
+//            success:function(data){
+//                console.log(data);
+//                $(".demo-muck-container").html(
+//                        "name:"+data.name+"<br>"+
+//                        "age:"+data.age+"<br>"+
+//                        "幸福指数:"+data.happy+"<br>"
+//                ).css({'color':data.color})
+//            },
+//            error:function(){
+//                console.log('服务器开小差了')
+//            }
+//        });
+
+        $(".btn-begin-test").click(function(){
+            var testName=$(".demo-muck-testName");
+            if($(".demo-muck-testName-after")){
+                $(".demo-muck-testName-after").remove();
+            }
+            if(testName.val()){
+                $.get(urrl,function(data){
+                    console.log(data);
+                    $(".demo-muck-container").html(
+                            "<ul style='list-style: none;margin: 0;padding: 0;'>" +
+                            "<li><span>姓&nbsp;&nbsp;名:</span>"+testName.val()+"</li>"+
+                            "<li><span>幸福时期:</span>"+data.happyTime[data.some.text].age+"岁</li>"+
+                            "<li><span>幸福指数:</span>"+data.some.happy+"</li>"+
+                            "<li><span>幸福生活:</span>"+data.happyTime[data.some.text].detail+"</li></ul>"
+                    ).css({'color':data.some.color})
+                },"json");
+            }else {
+                testName.after("<span class='demo-muck-testName-after'>请输入姓名</span>");
+            }
+        })
+    })
+</script>
+</html>

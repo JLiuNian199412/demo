@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="dist/themes/default/style.min.css">
+    <style>
+        .tree {
+            border:1px solid black;
+            padding:10px;
+            width:600px;
+            margin:auto;
+            margin-top:50px;
+            min-height:200px;
+        }
+    </style>
+</head>
+<body>
+<!--<div class="search_input">-->
+    <!--<input type="text" id="search_ay"  />-->
+    <!--<img src="/sfytj/dist/images/icon/ss_search.png" />-->
+<!--</div>-->
+<div class="tree" id="tree">
+    <ul>
+        <li>Node 01
+            <ul>
+                <li>Node</li>
+                <li>Node</li>
+            </ul>
+        </li>
+        <li>Node 02</li>
+        <li data-jstree='{"opened" : true}'>Node 03
+            <ul>
+                <li>Node</li>
+                <li>Node</li>
+            </ul>
+        </li>
+        <li>Node 04</li>
+        <li>Node 05</li>
+    </ul>
+</div>
+<script src="dist/libs/jquery.js"></script>
+<script src="dist/jstree.min.js"></script>
+
+<script>
+    $('#tree').jstree({
+        'core' : {
+            "multiple" : false,
+//            'data' : ay_mssys,
+//            'dblclick_toggle': false          //禁用tree的双击展开
+        },
+        "plugins" : ["checkbox","dnd"]
+    });
+</script>
+</body>
+</html>

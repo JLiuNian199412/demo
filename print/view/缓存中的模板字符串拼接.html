@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="aaaa" style="width: 900px;height: 900px"></div>
+<script src="../js/lib/jquery-3.1.1.min.js"></script>
+<script src="../js/lib/lodash-2.4.1.min.js"></script>
+<script>
+    var datas = [{
+        "value": "menu",
+        "display": "menu",
+        "tplPath": "text!../template/menu.tpl",
+        "tplContent":
+                "&lt;% _.forEach(data, function(item, index, obj) { " +
+                "%&gt;\n" +
+                "<div class=\"sheet\" style=\"position: relative; overflow: hidden;\">\n    " +
+                "<dl data-index=\"INumber\" style=\"position: absolute; top: 0px; left: 102px; cursor: move;\">&lt;%- item.containerNo %&gt;</dl>\n    " +
+                "<dl data-index=\"containerNo\" style=\"position: absolute; top: 0px; left: 630px; cursor: move;\">&lt;%- index %&gt;</dl>\n    " +
+                "<dl data-index=\"blNo\" style=\"position: absolute; top: 0px; left: 302px; cursor: move;\">&lt;%- item.blNo %&gt;</dl>\n    " +
+                "<dl data-index=\"contactPerson\" style=\"position: absolute; top: 231px; left: 95px; cursor: move; right: auto;\">&lt;%- item.contactPerson %&gt;</dl>\n    " +
+                "<dl data-index=\"id\" style=\"position: absolute; top: 392px; left: 250px; cursor: move;\">SH-&lt;%- item.id %&gt;</dl>\n    " +
+                "<dl data-index=\"doorArea\" style=\"position: absolute; top: 392px; left: 370px; cursor: move;\">&lt;%- item.doorArea %&gt;/6/7</dl>\n    " +
+                "<dl data-index=\"dueDate\" style=\"position: absolute; top: 458px; left: 200px; cursor: move;\">&lt;%- item.dueDate %&gt;</dl>\n    " +
+                "<dl data-index=\"sealNo\" style=\"position: absolute; top: 458px; left: 480px; cursor: move;\">&lt;%- item.sealNo %&gt;</dl>\n    " +
+                "<dl data-index=\"seller\" style=\"position: absolute; top: 700px; left: 200px; cursor: move;\">&lt;%- item.seller %&gt;---货名:DONG WU FEN BIAN</dl>\n    " +
+                "<dl data-index=\"shipperReleaseStatus\" style=\"position: absolute; top: 716px; left: 120px; cursor: move;\">&lt;%- item.shipperReleaseStatus %&gt;/20，6小时/40。</dl>\n    " +
+                "<dl data-index=\"toSailingTerm\" style=\"position: absolute; top: 732px; left: 120px; cursor: move;\">&lt;%- item.toSailingTerm %&gt;/20，150元/40，过夜800/柜</dl>\n    " +
+                "<dl data-index=\"vessel\" style=\"position: absolute; top: 748px; left: 120px; cursor: move;\">&lt;%- item.vessel %&gt; 请务必让用箱人与码头值班员签名并标注时间</dl>\n    " +
+                "<dl data-index=\"voyage\" style=\"position: absolute; top: 764px; left: 120px; cursor: move;\">&lt;%- item.voyage %&gt; TEL:13702870431</dl>\n" +
+                "</div>\n<div class=\"pageNext\"></div>\n" +
+                "&lt;%});" +
+                "%&gt;\n",
+        "margin": "0",
+        "sizeVal": "a5",
+        "isLandscape": false,
+        "fontSize": 14,
+        "xOffset": 0,
+        "yOffset": 0,
+        "bgTpl": "",
+        "size": "A5"
+    }, {
+        "value": "eir",
+        "display": "eir",
+        "tplPath": "text!../template/eir.tpl",
+        "tplContent": "",
+        "margin": "0",
+        "sizeVal": "a5",
+        "isLandscape": false,
+        "fontSize": 14,
+        "xOffset": 0,
+        "yOffset": 0,
+        "bgTpl": ""
+    }];
+//    $("#aaaa").html("&lt;% _.forEach(data, function(item, index, obj) { " +
+//            "%&gt;\n" +
+//            "<div class=\"sheet\" style=\"position: relative; overflow: hidden;\">\n    " +
+//            "<dl data-index=\"INumber\" style=\"position: absolute; top: 0px; left: 102px; cursor: move;\">&lt;%- item.containerNo %&gt;</dl>\n    " +
+//            "<dl data-index=\"containerNo\" style=\"position: absolute; top: 0px; left: 630px; cursor: move;\">&lt;%- index %&gt;</dl>\n    " +
+//            "<dl data-index=\"blNo\" style=\"position: absolute; top: 0px; left: 302px; cursor: move;\">&lt;%- item.blNo %&gt;</dl>\n    " +
+//            "<dl data-index=\"contactPerson\" style=\"position: absolute; top: 231px; left: 95px; cursor: move; right: auto;\">&lt;%- item.contactPerson %&gt;</dl>\n    " +
+//            "<dl data-index=\"id\" style=\"position: absolute; top: 392px; left: 250px; cursor: move;\">SH-&lt;%- item.id %&gt;</dl>\n    " +
+//            "<dl data-index=\"doorArea\" style=\"position: absolute; top: 392px; left: 370px; cursor: move;\">&lt;%- item.doorArea %&gt;/6/7</dl>\n    " +
+//            "<dl data-index=\"dueDate\" style=\"position: absolute; top: 458px; left: 200px; cursor: move;\">&lt;%- item.dueDate %&gt;</dl>\n    " +
+//            "<dl data-index=\"sealNo\" style=\"position: absolute; top: 458px; left: 480px; cursor: move;\">&lt;%- item.sealNo %&gt;</dl>\n    " +
+//            "<dl data-index=\"seller\" style=\"position: absolute; top: 700px; left: 200px; cursor: move;\">&lt;%- item.seller %&gt;---货名:DONG WU FEN BIAN</dl>\n    " +
+//            "<dl data-index=\"shipperReleaseStatus\" style=\"position: absolute; top: 716px; left: 120px; cursor: move;\">&lt;%- item.shipperReleaseStatus %&gt;/20，6小时/40。</dl>\n    " +
+//            "<dl data-index=\"toSailingTerm\" style=\"position: absolute; top: 732px; left: 120px; cursor: move;\">&lt;%- item.toSailingTerm %&gt;/20，150元/40，过夜800/柜</dl>\n    " +
+//            "<dl data-index=\"vessel\" style=\"position: absolute; top: 748px; left: 120px; cursor: move;\">&lt;%- item.vessel %&gt; 请务必让用箱人与码头值班员签名并标注时间</dl>\n    " +
+//            "<dl data-index=\"voyage\" style=\"position: absolute; top: 764px; left: 120px; cursor: move;\">&lt;%- item.voyage %&gt; TEL:13702870431</dl>\n" +
+//            "</div>\n<div class=\"pageNext\"></div>\n" +
+//            "&lt;%});" +
+//            "%&gt;\n");
+    var data=datas[0].tplContent;
+    var div_tpl= $("#aaaa");
+    div_tpl.html(data)
+    var data_index=div_tpl.find('[data-index]');
+    var obj_Tpl={items:[]};
+    var str_Tpl='';
+
+
+    _.forEach(data_index,function(item, index, obj){
+        obj_Tpl.items[index]={"data-index":item.getAttribute("data-index"),"top":item.style.top,"left":item.style.left,"html":item.innerHTML,"index":index};
+        str_Tpl+="<dl data-index="+item.getAttribute("data-index")+" style='position: absolute;top:"+item.style.top+";left:"+item.style.left+";'>"+item.innerHTML+"</dl>"
+//        console.log(item.getAttribute("data-index"))
+        console.log(item.innerText)
+    });
+    console.log(str_Tpl)
+    div_tpl.html(str_Tpl)
+//    $('dl').attr("display","block")
+//    console.log(data_index.length)
+//    console.log(data_index[0].style.left)
+//
+//    console.log(data_index[1].style.left)
+//    console.log(data_index[1].style.top)
+
+//
+//    _.forEach
+//
+//    obj = {
+//        items : [{
+//            top;
+//    left
+//    index
+//    html
+//
+//
+//    },{},{}]
+//    }
+//
+//
+//    obj => html()
+
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="jsGrid/js/lib/jquery-3.1.1.min.js"></script>
+<script>
+    var data={
+        totalCost:""
+    },estimatedCost =[];
+    forEach(res.charges,function(_,v){
+        var containerSize = v.containerSizeType,
+                chargeCode = v.chargeCode;
+        if(data[containerSize]) {
+            if (v.chargeCode == "CONTAINER_FREIGHT") {
+                data.containerSize.Freight = {};
+                if (data.containerSize.Freight != '') {
+                    data[containerSize].Freight.qty += 1;
+                } else {
+                    data[containerSize].Freight = v;
+                }
+            } else if (v.chargeCode == "OTHER") {
+                data.containerSize.Other = {};
+                if (data.containerSize.Other != '') {
+                    data[containerSize].Other.qty += 1;
+                } else {
+                    data[containerSize].Other = v;
+                }
+            }
+        }else {
+            data[containerSize] = {};
+        }
+        console.log(data)
+    });
+</script>
+</html>

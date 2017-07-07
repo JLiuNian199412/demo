@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .btn {
+            -moz-user-select: none;
+            -khtml-user-select: none;
+            user-select: none;
+        }
+        .txt_icon,.edit_icon{
+            display: inline-block;
+        }
+        img.user_img{
+            width: 100px;
+            height: 100px;
+        }
+        .txt_icon{
+            height: 100px;
+            width: 60px;
+            line-height: 100px;
+            text-align: center;
+            vertical-align: top;
+        }
+        .edit_icon{
+            position: relative;
+            height: 100px;
+            width: 100px;
+        }
+        .edit_h6{
+            position: absolute;
+            font-size: 12px;
+            font-weight: 600;
+            width: 100%;
+            height: 26px;
+            line-height: 26px;
+            text-align: center;
+            bottom: 0;
+            z-index:6;
+            display: none;
+        }
+        .edit_h6_show{
+            background: rgba(59, 59, 59, 0.35);
+            cursor: pointer;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="txt_icon">头像:</div>
+    <div class="edit_icon">
+        <span class="edit_h6 btn">编辑头像</span>
+        <img src="../upload/upload-images/default2.png"  class="user_img" >
+        <input type="file" name="user_icon" class="up_icon" style="display: none;">
+    </div>
+</div>
+<script src="../public/javascripts/jquery.min.js"></script>
+<script>
+    $(function(){
+        //        更换头像
+        var edit_h6=$('.edit_h6');
+        var up_icon=$(".up_icon");
+        edit_h6.click(function () {
+            up_icon.click();
+        });
+        $(".edit_icon").bind(
+                {mouseenter:function(){
+                    edit_h6.addClass("edit_h6_show")
+                },mouseleave:function(){
+                    edit_h6.removeClass("edit_h6_show")
+                }});
+//        $(".edit_icon").hover(
+//                function(){
+//                    edit_h6.css({"display":"inline-block","background": "rgba(59, 59, 59, 0.35)","cursor": "pointer"})
+//                },function(){
+//                    edit_h6.css("display","none")
+//                })
+        up_icon.change(function (e) {
+            if(e){
+
+            }
+            var user_img=$('.user_img');
+            user_img.remove();
+            var file= e.target.files[0];
+            var  url=URL.createObjectURL(file);
+            var img=new Image();
+            $(img).attr("class","user_img");
+            img.src=url;
+            img.onload=function () {
+                console.log('1111')
+                URL.revokeObjectURL(url);
+                edit_h6.after(img)
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

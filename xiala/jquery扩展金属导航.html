@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery UI Menu - Default functionality</title>
+	<link rel="stylesheet" href="jquery-ui.css">
+	<link rel="stylesheet" href="style.css">
+	<script src="jquery-3.1.1.min.js"></script>
+	<script src="jquery-ui.js"></script>
+	<style>
+		.ui-menu {
+			width: 240px;
+		}
+		.ui-menu-item-wrapper.ui-state-active{
+			background: #ededed;
+			border: none;
+			color: #555555;
+		}
+		.ui-menu-lable{
+			display:inline-block;
+		}
+		.ui-menu-edit,.ui-menu-lable{
+			width:70px;
+			display:inline-block;
+			height: 20px;
+			line-height: 20px;
+		}
+		.ui-menu-edit{
+			display:none;
+			font-size: 12px;
+			text-align: right;
+			padding-right: 5px;
+			width:50px;
+		}
+		.ui-menu-edit-in{
+			width: 65px;
+			display: none
+		}
+	</style>
+</head>
+<body>
+
+<ul id="menu">
+	<li><div><input type="checkbox"><span class="ui-menu-lable">费用</span><span class="ui-menu-edit">列宽</span><input type="text" class="ui-menu-edit-in" ></div></li>
+	<li><div><input type="checkbox"><span class="ui-menu-lable">做箱时间</span><span class="ui-menu-edit">列宽</span><input type="text" class="ui-menu-edit-in"></div></li>
+	<li><div><input type="checkbox"><span class="ui-menu-lable">港区</span><span class="ui-menu-edit">列宽</span><input type="text" class="ui-menu-edit-in" ></div></li>
+	<li><div><input type="checkbox"><span class="ui-menu-lable">箱号</span><span class="ui-menu-edit" >列宽</span><input type="text" class="ui-menu-edit-in" ></div></li>
+	<li><div><input type="checkbox"><span class="ui-menu-lable">封号</span><span class="ui-menu-edit">列宽</span><input type="text" class="ui-menu-edit-in" ></div></li>
+	<li><div><input type="checkbox"><span class="ui-menu-lable">订单号</span><span class="ui-menu-edit">列宽</span><input type="text" class="ui-menu-edit-in" ></div></li>
+	<li><div><input type="checkbox"><span class="ui-menu-lable">状态</span><span class="ui-menu-edit">列宽</span><input type="text" class="ui-menu-edit-in" ></div></li>
+</ul>
+<script>
+	$( function() {
+		$( "#menu" ).menu().sortable({
+			activate: function (event, ui) {
+				console.log(ui.item.prev().text())
+			}
+		});
+		var menuLi=$(".ui-menu li")
+		menuLi.hover(function(){
+			$(this).find('.ui-menu-edit').css("display","inline-block")
+		},function(){
+			$(this).find('.ui-menu-edit').css("display","none")
+		});
+		menuLi.click(function(){
+			$(this).find('.ui-menu-edit-in').css("display","inline-block")
+			$(this).find('.ui-menu-edit').css("display","inline-block")
+		});
+		menuLi.blur(function(){
+			$(this).find('.ui-menu-edit').css("display","none")
+			$(this).find('.ui-menu-edit-in').css("display","none")
+		})
+	});
+
+</script>
+
+</body>
+</html>
